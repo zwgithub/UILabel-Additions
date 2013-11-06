@@ -1,0 +1,42 @@
+//
+//  UILabel+Additions.m
+//  DamaiHD
+//
+//  Created by lixiang on 13-11-5.
+//  Copyright (c) 2013年 damai. All rights reserved.
+//
+
+#import "UILabel+Additions.h"
+
+@implementation UILabel (Additions)
+
+- (void)adjustFontWithMaxSize:(CGSize)maxSize {
+    CGSize stringRect;
+    if (CGSizeEqualToSize(maxSize, CGSizeZero)) {
+  
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+        stringRect = [self.text boundingRectWithSize:self.frame.size options:(NSStringDrawingUsesFontLeading|NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:self.font} context:NULL];
+#else
+        stringRect = [self.text sizeWithFont:self.font
+                     constrainedToSize:self.frame.size
+                         lineBreakMode:NSLineBreakByWordWrapping];
+#endif
+    } else {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+        stringRect = [self.text boundingRectWithSize:maxSize options:(NSStringDrawingUsesFontLeading|NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:self.font} context:NULL];
+#else
+        stringRect = [self.text sizeWithFont:self.font
+                           constrainedToSize:maxSize
+                               lineBreakMode:NSLineBreakByWordWrapping];
+#endif
+    }
+    CGRect frame = self.frame;
+    frame.size.width = stringRect.width;
+    frame.size.height = stringRect.height;
+    self.frame = frame;
+    
+    NSInteger lines = (int)stringRect.height / self.font.xHeight;
+    self.numberOfLines = lines;
+}
+
+@end
