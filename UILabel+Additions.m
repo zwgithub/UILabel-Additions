@@ -1,9 +1,9 @@
 //
 //  UILabel+Additions.m
-//  DamaiHD
+//
 //
 //  Created by lixiang on 13-11-5.
-//  Copyright (c) 2013年 damai. All rights reserved.
+//  Copyright (c) 2013年 . All rights reserved.
 //
 
 #import "UILabel+Additions.h"
