@@ -19,7 +19,7 @@
 #else
         stringRect = [self.text sizeWithFont:self.font
                            constrainedToSize:self.frame.size
-                               lineBreakMode:NSLineBreakByWordWrapping];
+                               lineBreakMode:NSLineBreakByWordWrapping].size;
 #endif
     } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
@@ -27,7 +27,7 @@
 #else
         stringRect = [self.text sizeWithFont:self.font
                            constrainedToSize:maxSize
-                               lineBreakMode:NSLineBreakByWordWrapping];
+                               lineBreakMode:NSLineBreakByWordWrapping].size;
 #endif
     }
     CGRect frame = self.frame;
